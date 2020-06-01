@@ -214,12 +214,28 @@ return [
             'topnav' => true,
         ],
         [
-            'text'        => 'Home',
+            'text'        => 'Dashboard',
             'url'         => 'admin',
-            'icon'        => 'far fa fa-home',
+            'icon'        => 'far fa fa-tachometer-alt',
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Financial',
+            'icon' => 'far fa fa-money-bill-wave-alt',
+            'submenu' => [
+                [
+                    'text' => 'Balance',
+                    'url'  => 'admin/balance',
+                    'icon' => 'far fa fa-money-check',
+                ],
+                [
+                    'text' => 'History',
+                    'url'  => 'admin/history',
+                    'icon' => 'far fa fa-history',
+                ],
+            ]
+        ]
     ],
 
     /*

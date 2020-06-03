@@ -10,17 +10,10 @@
 
 @section('content')
   <div class="card">
-  	<div class="card-header">
-  		
+  	<div>
+  		@include('admin.includes.alerts')
   	</div>
   	<div class="card-body">
-      @if ($errors->any())
-        <div class="text-light alert alert-warning">
-          @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-          @endforeach
-        </div>
-      @endif
   		<form method="POST" action="{{ route('deposit.store') }}">
   			@csrf
   			<div class="form-group">

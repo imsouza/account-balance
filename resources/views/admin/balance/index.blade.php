@@ -15,6 +15,7 @@
   		<a class="btn btn-danger text-white"><i class="fas fa-cart-arrow-down"></i>&nbsp;Withdraw</a>
   	</div>
   	<div class="card-body">
+        @include('admin.includes.alerts')
 				<div class="small-box bg-green">
             <div class="inner">
               <h3 class="mt-3 pb-3">$ {{ number_format($amount, 2, '.', '')}}</h3>

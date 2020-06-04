@@ -5,7 +5,7 @@
 @section('title', 'New Deposit')
 
 @section('content_header')
-    <h1>Make Deposit</h1>
+    <h1 class="lead">Make Deposit</h1>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
   		<form method="POST" action="{{ route('deposit.store') }}">
   			@csrf
   			<div class="form-group">
-  				<input type="text" name="value" class="form-control" placeholder="Deposit Amount">
+  				<input type="text" name="value" class="form-control" placeholder="Deposit Amount" required>
   			</div>
   			<div class="form-group">
   				<button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-up"></i>&nbsp;Deposit</button>

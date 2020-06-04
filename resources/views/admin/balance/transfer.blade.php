@@ -2,10 +2,10 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Withdraw')
+@section('title', 'Transfer')
 
 @section('content_header')
-    <h1 class="lead">Make Withdraw</h1>
+    <h1 class="lead">Make Transfer</h1>
 @stop
 
 @section('content')
@@ -14,13 +14,13 @@
   		@include('admin.includes.alerts')
   	</div>
   	<div class="card-body">
-  		<form method="POST" action="{{ route('withdraw.store') }}">
+  		<form method="POST" action="{{ route('confirm.transfer') }}">
   			@csrf
   			<div class="form-group">
-  				<input type="text" name="value" class="form-control" placeholder="Amount to withdraw" required>
+  				<input type="email" name="sender" class="form-control" placeholder="Enter the email of who will receive the transfer." required>
   			</div>
   			<div class="form-group">
-  				<button type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-down"></i>&nbsp;Withdraw</button>
+  				<button type="submit" class="btn btn-info"><i class="fas fa-arrow-circle-right"></i>&nbsp;Next Step</button>
   			</div>
   		</form>
   	</div>

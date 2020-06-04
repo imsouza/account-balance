@@ -5,7 +5,7 @@
 @section('title', 'Balance')
 
 @section('content_header')
-  <h1>Balance</h1>
+  <h1 class="lead">Balance</h1>
 @stop
 
 @section('content')
@@ -14,6 +14,9 @@
   		<a href="{{ route('balance.deposit') }}" class="btn btn-primary text-white"><i class="fas fa-cart-plus"></i>&nbsp;Deposit</a>
       @if ($amount > 0)
   		  <a href="{{ route('balance.withdraw') }}" class="btn btn-danger text-white"><i class="fas fa-cart-arrow-down"></i>&nbsp;Withdraw</a>
+      @endif
+      @if ($amount > 0)
+        <a href="{{ route('balance.transfer') }}" class="btn btn-info text-white"><i class="fas fa-exchange-alt"></i>&nbsp;Transfer</a>
       @endif
   	</div>
   	<div class="card-body">

@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function getSender($sender)
+    {
+        return $this->where('name', 'LIKE', "%$sender%")->orWhere('email', $sender)->get()->first();
+    }
 }

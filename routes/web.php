@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([ 'middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+	Route::post('balance/withdraw', 'BalanceController@withdrawStore')->name('withdraw.store');
+	Route::get('balance/withdraw', 'BalanceController@withdraw')->name('balance.withdraw');
 	Route::post('balance/deposit', 'BalanceController@depositStore')->name('deposit.store');
 	Route::get('balance/deposit', 'BalanceController@deposit')->name('balance.deposit');
 	Route::get('balance', 'BalanceController@index')->name('admin.balance');

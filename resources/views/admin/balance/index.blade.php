@@ -12,7 +12,9 @@
   <div class="card">
   	<div class="card-header">
   		<a href="{{ route('balance.deposit') }}" class="btn btn-primary text-white"><i class="fas fa-cart-plus"></i>&nbsp;Deposit</a>
-  		<a class="btn btn-danger text-white"><i class="fas fa-cart-arrow-down"></i>&nbsp;Withdraw</a>
+      @if ($amount > 0)
+  		  <a href="{{ route('balance.withdraw') }}" class="btn btn-danger text-white"><i class="fas fa-cart-arrow-down"></i>&nbsp;Withdraw</a>
+      @endif
   	</div>
   	<div class="card-body">
         @include('admin.includes.alerts')

@@ -70,11 +70,23 @@ class BalanceController extends Controller
     if ($sender->id === auth()->user()->id)
       return redirect()->back()->with('danger', 'You cannot transfer to yourself.');
 
-    return view('admin.balance.transfer-confirm', compact('sender'));
+    $balance = auth()->user()->balance;
+
+    return view('admin.balance.transfer-confirm', compact('sender', 'balance'));
   }
 
-  public function transferStore(Request $request, User $user)
+
+  public function transferStore(MoneyValidationFormRequest $request, User $user)
   {
-    dd($request->all());
+    if (!$sender = $user->getSender($request->sender_id))
+      return redirect()->route('balance.transfer')->with('success', 'Receiver not found.');
+
+    $balance = auth()->user()->balance()->firstOrCreate([]);
+    $response = $balance->transfer($request->value, $sender);
+
+    if ($response['success'])
+      return redirect()->route('admin.balance')->with('success', $response['message']);
+
+    return redirect()->route('balance.transfer')->with('danger', $response['message']);
   }
 }

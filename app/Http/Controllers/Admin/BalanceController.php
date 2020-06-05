@@ -89,4 +89,11 @@ class BalanceController extends Controller
 
     return redirect()->route('balance.transfer')->with('danger', $response['message']);
   }
+
+
+  public function history()
+  {
+    $historys = auth()->user()->transactions()->get();
+    return view('admin.balance.history', compact('historys'));
+  }
 }

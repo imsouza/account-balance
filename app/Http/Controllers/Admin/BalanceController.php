@@ -93,7 +93,7 @@ class BalanceController extends Controller
 
   public function history()
   {
-    $historys = auth()->user()->transactions()->get();
+    $historys = auth()->user()->transactions()->with(['userSender'])->get();
     return view('admin.balance.history', compact('historys'));
   }
 }

@@ -16,12 +16,12 @@
   	<div class="card-body">
       <table class="table text-center table-responsive-md table-responsive-xs table-responsive-sm table-bordered table-hover table-striped">
         <thead>
-          <tr>
+          <tr class="text-info">
             <th>#</th>
             <th>Value</th>
             <th>Type</th>
             <th>Date</th>
-            <th>?Sender?</th>
+            <th>Sender</th>
           </tr>
         </thead>
         <tbody>
@@ -29,9 +29,15 @@
           <tr>
             <td>{{ $history->id }}</td>
             <td>{{ number_format($history->amount, 2, '.', '') }}</td>
-            <td>{{ $history->type }}</td>
+            <td>{{ $history->type($history->type) }}</td>
             <td>{{ $history->date }}</td>
-            <td>{{ $history->user_id_transaction }}</td>
+            <td>
+              @if ($history->user_id_transaction)
+                {{ $history->userSender->name }}
+              @else
+                -
+              @endif
+            </td>
           </tr>
           @empty
           @endforelse

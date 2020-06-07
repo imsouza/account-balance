@@ -43,6 +43,8 @@
           @endforelse
         </tbody>
       </table>
+
+      {!! $historys->links() !!}
   	</div>
   </div>
 @stop

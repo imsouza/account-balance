@@ -10,6 +10,8 @@ use App\User;
 
 class BalanceController extends Controller
 {
+  private $totalPage = 5;
+
   public function index()
   {
   	$balance = auth()->user()->balance;
@@ -93,7 +95,7 @@ class BalanceController extends Controller
 
   public function history()
   {
-    $historys = auth()->user()->transactions()->with(['userSender'])->get();
+    $historys = auth()->user()->transactions()->with(['userSender'])->paginate($this->totalPage);
     return view('admin.balance.history', compact('historys'));
   }
 }

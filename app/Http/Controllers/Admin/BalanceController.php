@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Balance;
 use App\Http\Requests\MoneyValidationFormRequest;
 use App\User;
+use App\Models\Transaction;
 
 class BalanceController extends Controller
 {
@@ -93,9 +94,19 @@ class BalanceController extends Controller
   }
 
 
-  public function history()
+  public function history(Transaction $transaction)
   {
     $historys = auth()->user()->transactions()->with(['userSender'])->paginate($this->totalPage);
-    return view('admin.balance.history', compact('historys'));
+    $types = $transaction->type();
+    return view('admin.balance.history', compact('historys', 'types'));
+  }
+
+
+  public function filterHistory(Request $request, Transaction $transaction)
+  {
+    $dataFilter = $request->except('_token');
+    $historys = $transaction->filter($dataFilter, $this->totalPage);
+    $types = $transaction->type();
+    return view('admin.balance.history', compact('historys', 'types', 'dataFilter'));
   }
 }

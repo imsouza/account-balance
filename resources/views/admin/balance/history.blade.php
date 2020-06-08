@@ -11,7 +11,18 @@
 @section('content')
   <div class="card">
   	<div class="card-header">
-
+      <form action="{{ route('history.filter') }}" method="POST" class="form form-inline">
+        @csrf
+        <input type="text" name="id" class="form-control" placeholder="ID">
+        <input type="date" name="date" class="form-control">
+        <select name="type" class="form-control">
+          <option value="">-- Select Type --</option>
+          @foreach ($types as $key => $type)
+            <option value="{{ $key }}">{{ $type }}</option>
+          @endforeach
+        </select>
+        <button type="submit" class="btn btn-primary form-control">Filter</button>
+      </form>
   	</div>
   	<div class="card-body">
       <table class="table text-center table-responsive-md table-responsive-xs table-responsive-sm table-bordered table-hover table-striped">
@@ -43,8 +54,11 @@
           @endforelse
         </tbody>
       </table>
-
-      {!! $historys->links() !!}
+      @if (isset($dataFilter))
+        {!! $historys->appends($dataFilter)->links() !!}
+      @else
+        {!! $historys->links() !!}
+      @endif
   	</div>
   </div>
 @stop

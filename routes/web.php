@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([ 'middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
+	Route::any('history-filter', 'BalanceController@filterHistory')->name('history.filter');
 	Route::get('history', 'BalanceController@history')->name('admin.history');
 
 	Route::post('balance/confirm-transfer', 'BalanceController@confirmTransfer')->name('confirm.transfer');

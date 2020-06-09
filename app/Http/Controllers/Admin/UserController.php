@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProfileFormRequest;
 
 class UserController extends Controller
 {
@@ -13,7 +14,7 @@ class UserController extends Controller
   }
 
 
-  public function profileUpdate(Request $request)
+  public function profileUpdate(UpdateProfileFormRequest $request)
   {
     $user = auth()->user();
   	$data = $request->all(); 
@@ -29,6 +30,8 @@ class UserController extends Controller
       $file = $request->file('image');
       $extension = $file->getClientOriginalExtension();
       $filename =time().'.'.$extension;
+
+      $data['image'] = $filename;
 
       $upload = $request->image->storeAs('users', $filename);
 

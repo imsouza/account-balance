@@ -5,8 +5,8 @@
 @section('content')
 <div class="card">
 	<div class="card-header">
-		@include('site.layouts.alerts')
 		<h3>Update Profile</h3>
+		@include('admin.includes.alerts')
 	</div>
 	<div class="card-body">
 		<form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -24,6 +24,9 @@
 				<input type="password" name="password" placeholder="Password" class="form-control" autocomplete="off">
 			</div>
 			<div class="form-group">
+				@if (auth()->user()->image != null)
+					<img src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" width="50">
+				@endif
 				<label for="image">Image</label>
 				<input type="file" class="form-control" name="image">
 			</div>

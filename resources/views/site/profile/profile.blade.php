@@ -3,9 +3,10 @@
 @section('title', 'My Profile')
 
 @section('content')
-<div class="card">
+<div class="card" style="margin-top: 4%">
 	<div class="card-header">
 		<h3>Update Profile</h3>
+		<a class="btn btn-primary w-25" href="{{ route('home') }}">Back</a>
 		@include('admin.includes.alerts')
 	</div>
 	<div class="card-body">
